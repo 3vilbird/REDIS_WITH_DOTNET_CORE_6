@@ -1,3 +1,4 @@
+using System.Net;
 using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,8 +10,15 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddStackExchangeRedisCache(options => {
-    options.Configuration = builder.Configuration["RedisConnectionString"].ToString();   
+    options.Configuration = builder.Configuration["RedisConnectionString"].ToString();
+       
 });
+// builder.Services.AddHttpsRedirection(options =>
+// {
+//     options.RedirectStatusCode = (int)HttpStatusCode.TemporaryRedirect;
+//     options.HttpsPort = 5001;
+// });
+
 
 var app = builder.Build();
 
